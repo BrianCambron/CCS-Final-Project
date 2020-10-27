@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 
     #Local
-
+    'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
 ]
 
@@ -149,3 +149,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+
+# Substituting a custom User model
+# https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#substituting-a-custom-user-model
+AUTH_USER_MODEL = 'accounts.User'
