@@ -1,0 +1,12 @@
+.form-bottom{
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.form-button{
+  background-color: #53354A;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+}

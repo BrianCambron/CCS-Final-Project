@@ -1,0 +1,25 @@
+form {
+  background-color: #E84545;
+  margin-left: 25%;
+  margin-top: 10%;
+  border-radius: 6px;
+}
+h5 {
+  text-align: center;
+}
+
+input{
+  margin: auto;
+}
+.form-bottom{
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.form-button{
+  background-color: #53354A;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+}
