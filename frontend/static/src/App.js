@@ -72,7 +72,7 @@ class App extends Component{
       this.setState({isLoggedIn:false});
       this.props.history.push('/')
     }
-  }
+   }
   render(){
     const isLoggedIn = this.state.isLoggedIn;
     return(
@@ -83,7 +83,7 @@ class App extends Component{
             {isLoggedIn === false?<LoginForm logIn={this.logIn}/> : <Redirect to="/dashboard" />}
           </Route>
           <Route path="/Register">
-            <RegisterForm registerUser={this.registerUser}/>
+            {isLoggedIn === false?<RegisterForm registerUser={this.registerUser}/> : <Redirect to="/dashboard" />}
           </Route>
         </Switch>
       </React.Fragment>

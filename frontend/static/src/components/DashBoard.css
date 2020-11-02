@@ -1,0 +1,25 @@
+.dashboard{
+  background-color: #E84545;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 6px;
+  justify-content: space-between;
+}
+.navbar-buttons{
+  background-color: #2B2E4A;
+  color: white;
+  /* border-radius: 15px; */
+  padding: 8px;
+  border: none;
+}
+
+img{
+  width: 38%;
+}
+
+.aside-buttons{
+  color: white;
+  border: none;
+  background-color: #53354A;
+}
