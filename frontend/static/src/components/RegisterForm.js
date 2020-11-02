@@ -18,7 +18,8 @@ class RegisterForm extends Component {
   }
   render(){
     return(
-      <form className="col-12 col-md-6 register">
+      <form className="col-12 col-md-6" onSubmit={(e) => this.props.registerUser(e, this.state)}>
+        <img style={{width: '10%', display:'block', margin: 'auto'}}src='https://cdn0.iconfinder.com/data/icons/money-25/192/__-2-512.png' alt=''/>
         <h5 className="Register">Create Account</h5>
         <div className="form-group">
           <input style={{width: '75%'}}type='text' className="form-control" placeholder="Username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
