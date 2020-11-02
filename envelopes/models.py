@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator
 
 
 class Envelope(models.Model):
@@ -45,7 +45,7 @@ class Envelope(models.Model):
     name = models.CharField(max_length = 255)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.CharField(max_length = 255, choices=CATEGORY_CHOICES, default=MISCELLANEOUS,)
-    money = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(1000)], null=True)
+    money = models.PositiveIntegerField(validators=[MinValueValidator(0)], null=True)
 
     def __str__(self):
         return self.name
