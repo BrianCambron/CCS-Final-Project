@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Link, Redirect, withRouter} from "react-router-dom";
+import { Switch, Route, Redirect, withRouter} from "react-router-dom";
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import DashBoard from './components/DashBoard';
@@ -30,7 +30,7 @@ class App extends Component{
     const handleError = (err) => console.warn(err);
     const response = await fetch('/api/v1/rest-auth/registration/', options)
     const data = await response.json().catch(handleError)
-    console.log(data);
+    // console.log(data);
     if(data.key){
       Cookies.set('Authorization', `Token ${data.key}`);
       this.setState({isLoggedIn:true});
