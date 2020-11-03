@@ -22,9 +22,10 @@ class DashBoard extends Component{
     this.handleChange = this.handleChange.bind(this)
     this.deleteEnvelope = this.deleteEnvelope.bind(this)
     this.handleModal2 = this.handleModal2.bind(this)
+    this.editEnvelope = this.editEnvelope.bind(this)
   }
   async componentDidMount(){
-    const response = await fetch('api/v1/envelopes/');
+    const response = await fetch('api/v1/envelopes/user');
     const data = await response.json();
     this.setState({envelopes:data});
   }
@@ -46,7 +47,7 @@ class DashBoard extends Component{
         body: JSON.stringify(obj),
       };
       const handleError = (err) => console.warn(err);
-      const response = await fetch('/api/v1/envelopes/', options)
+      const response = await fetch('/api/v1/envelopes/user', options)
       const data = await response.json().catch(handleError)
       const envelopes = [...this.state.envelopes, data];
       this.setState({envelopes})
@@ -63,12 +64,29 @@ class DashBoard extends Component{
       },
     }
     const handleError = (err) => console.warn(err);
-    const response = await fetch(`api/v1/envelopes/${id}/`, options)
+    const response = await fetch(`api/v1/envelopes/user/${id}/`, options)
     const data = await response.json().catch(handleError)
     const envelopes = [...this.state.envelopes]
     const index = envelopes.findIndex(envelope => envelope.id === id)
     envelopes.splice(index,1);
     this.setState({envelopes})
+  }
+  async editEnvelope(obj, id){
+    const options = {
+      method:'PUT',
+      headers:{
+        'X-CSRFToken': Cookies.get('csrftoken'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(obj),
+    };
+     const handleError = (err) => console.warn(err);
+     const response = await fetch(`api/v1/envelopes/user/${id}/`, options)
+     const data = await response.json().catch(handleError)
+     const envelopes = [...this.state.envelopes];
+     const index = envelopes.findIndex(envelope => envelope.id === id);
+     envelopes[index] = data;
+     this.setState({envelopes})
   }
   render(){
     console.log(this.state.envelopes.filter(envelope => console.log(envelope.money)));
@@ -149,7 +167,7 @@ class DashBoard extends Component{
         </Modal.Footer>
         </Modal>
       </aside>
-      <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope}/>
+      <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope} editEnvelope={this.editEnvelope}/>
       </>
     )
   }

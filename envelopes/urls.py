@@ -1,9 +1,8 @@
 from django.urls import path
 
-from .views import EnvelopeListCreateView, EnvelopeRetrieveUpdateDestroyView
+from .views import UserEnvelopeList, UserEnvelopeDetailList
 
 urlpatterns = [
-    path('<int:pk>/', EnvelopeRetrieveUpdateDestroyView.as_view()),
-    path('', EnvelopeListCreateView.as_view()),
-
+    path('user/', UserEnvelopeList.as_view()),
+    path('user/<int:pk>/', UserEnvelopeDetailList.as_view()),
 ]
