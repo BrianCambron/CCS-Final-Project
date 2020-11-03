@@ -2,15 +2,19 @@
   background-color: #E84545;
   margin-left: 25%;
   margin-top: 10%;
-  border-radius: 6px;
+  border-radius: 18px;
+  height: 470px;
+  width: 680px;
 }
 h5 {
   text-align: center;
+  font-size: 30px;
 }
 
 input{
   margin: auto;
 }
+
 .form-bottom{
   width: 75%;
   margin: auto;
@@ -22,4 +26,5 @@ input{
   color: white;
   border-radius: 6px;
   padding: 5px 10px;
+  border:none;
 }
