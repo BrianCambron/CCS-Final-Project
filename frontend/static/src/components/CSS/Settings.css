@@ -1,0 +1,27 @@
+
+/* .sidebar{
+padding:20px;
+background:#903749;
+position: absolute;
+top: 14%;
+left: 0;
+bottom: 0;
+height: 100%;
+}
+.sidebar-buttons{
+  color: white;
+  border-radius: 18px;
+  /* padding: 5px; */
+  /* border: none;
+} */
+.settings{
+  width: 70%;
+  height: 600px;
+  padding: 20px;
+  background-color: white;
+  margin: auto;
+  border-radius: 18px;
+}
+.profile{
+  width: 38%;
+}

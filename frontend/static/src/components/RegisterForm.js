@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './RegisterForm.css'
+import './CSS/RegisterForm.css'
 
 class RegisterForm extends Component {
   constructor(props){
@@ -22,16 +22,16 @@ class RegisterForm extends Component {
         <img style={{width: '10%', display:'block', margin: 'auto', paddingTop:'10%'}}src='https://cdn0.iconfinder.com/data/icons/money-25/192/__-2-512.png' alt=''/>
         <h5 className="Register">Create Account</h5>
         <div className="form-group">
-          <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Username" id="username" name="username" autocomplete="on" value={this.state.username} onChange={this.handleChange}/>
+          <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Username" id="username" name="username" autoComplete="on" value={this.state.username} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
-          <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Email" id="email" name="email" autocomplete="on" value={this.state.email} onChange={this.handleChange}/>
+          <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Email" id="email" name="email" autoComplete="on" value={this.state.email} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
-          <input style={{width: '75%', borderRadius: '18px'}} type='password' className="form-control" placeholder="Password" id="password1" name="password1" autocomplete="on" value={this.state.password1} onChange={this.handleChange}/>
+          <input style={{width: '75%', borderRadius: '18px'}} type='password' className="form-control" placeholder="Password" id="password1" name="password1" autoComplete="on" value={this.state.password1} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
-          <input style={{width: '75%', borderRadius: '18px'}}type='password' className="form-control" placeholder="Confirm Password" id="password2" name="password2" autocomplete="on" value={this.state.password2} onChange={this.handleChange}/>
+          <input style={{width: '75%', borderRadius: '18px'}}type='password' className="form-control" placeholder="Confirm Password" id="password2" name="password2" autoComplete="on" value={this.state.password2} onChange={this.handleChange}/>
         </div>
         <div className="form-bottom">
           <button className="form-button">Register</button>

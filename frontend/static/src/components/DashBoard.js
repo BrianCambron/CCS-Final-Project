@@ -3,14 +3,13 @@ import { Modal, Button} from "react-bootstrap";
 import Cookies from 'js-cookie';
 import EnvelopeList from './EnvelopeList'
 import { Pie } from 'react-chartjs-2';
-import './DashBoard.css'
+import './CSS/DashBoard.css'
 
 
 class DashBoard extends Component{
   constructor(props){
     super(props);
     this.state = {
-      image: 'https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-256.png',
       envelopes:[],
       show:false,
       display:false,
@@ -51,7 +50,7 @@ class DashBoard extends Component{
       const data = await response.json().catch(handleError)
       const envelopes = [...this.state.envelopes, data];
       this.setState({envelopes})
-    }
+  }
   handleChange(event){
     this.setState({[event.target.name]: event.target.value});
   }
@@ -89,39 +88,27 @@ class DashBoard extends Component{
      this.setState({envelopes})
   }
   render(){
-    console.log(this.state.envelopes.filter(envelope => console.log(envelope.money)));
     const data = this.state.envelopes.map(envelope => envelope.money);
     const labels = this.state.envelopes.map(envelope => envelope.name);
     return(
       <>
-      <nav className="dashboard">
-        <div>
-          <button className="navbar-buttons mr-2 ml-2">Social</button>
-          <button className="navbar-buttons mr-2">Guides</button>
-        </div>
-        <div style={{textAlign: 'center'}}>
-          <img className="profile"src={this.state.image} alt=""/>
-        </div>
-        <div>
-          <button className="navbar-buttons mr-2">Settings</button>
-          <button className="navbar-buttons mr-2" onClick={this.props.logOut}>Log out</button>
-        </div>
-      </nav>
       <aside>
         <Button className="aside-buttons" onClick={() => {this.handleModal()}}>Create Envelope</Button>
         <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
         <Modal.Header closeButton>New Envelope</Modal.Header>
         <Modal.Body>
           <form onSubmit={(e) => {this.createEnvelope(e, this.state); this.setState({name: '', money:0})}}>
-            <div className="form-group">
-              <label htmlFor='name' className="mr-2">Envelope name</label>
-              <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
+            <div className="row">
+              <div className="col">
+                <label htmlFor='name' className="mr-2">Envelope name</label>
+                <input type="text" className="form-control" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
+              </div>
+              <div className="col">
+                <label htmlFor="money" className="mr-2">Money</label>
+                <input type="number" className="form-control" min="0" id="money" name="money" value={this.state.money} onChange={this.handleChange}/>
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="money" className="mr-2">Money</label>
-              <input type="number" min="0" id="money" name="money" value={this.state.money} onChange={this.handleChange}/>
-            </div>
-            <button type="submit">Create</button>
+            <button className="mt-2" type="submit">Create</button>
           </form>
         </Modal.Body>
         <Modal.Footer>

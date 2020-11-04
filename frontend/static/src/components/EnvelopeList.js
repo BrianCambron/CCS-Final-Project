@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './EnvelopeList.css'
+import './CSS/EnvelopeList.css'
 
 
 class EnvelopeItem extends Component {
@@ -7,8 +7,8 @@ class EnvelopeItem extends Component {
     super(props);
     this.state = {
       isEditing: false,
-      name:'',
-      money:0,
+      name: this.props.envelope.name,
+      money: this.props.envelope.money,
     }
     this.handleInput = this.handleInput.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
