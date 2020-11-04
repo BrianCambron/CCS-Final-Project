@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     #Local
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
+    'chats.apps.ChatsConfig',
     'envelopes.apps.EnvelopesConfig',
     'frontend.apps.FrontendConfig',
 ]

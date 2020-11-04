@@ -39,12 +39,13 @@ class App extends Component{
     if(data.key){
       Cookies.set('Authorization', `Token ${data.key}`);
       this.setState({isLoggedIn:true});
+      localStorage.setItem('avatar', data.user.profile?.avatar);
     }
    }
 
-   updateImage(image) {
-     this.setState({image});
-   }
+ updateImage(image) {
+    this.setState({image});
+  }
   async logIn(e, obj){
     e.preventDefault();
     const options = {
@@ -61,8 +62,8 @@ class App extends Component{
     const data = await response.json().catch(handleError)
     if(data.key){
       Cookies.set('Authorization', `Token ${data.key}`);
-      this.setState({isLoggedIn:true});
-      localStorage.setItem('avatar', data.user.profile.avatar);
+      this.setState({isLoggedIn:true, image: data.user.profile?.avatar});
+      localStorage.setItem('avatar', data.user.profile?.avatar);
     }
    }
   async logOut(){
@@ -85,7 +86,6 @@ class App extends Component{
     }
    }
   render(){
-    console.log(localStorage);
     const isLoggedIn = this.state.isLoggedIn;
     return(
       <React.Fragment>

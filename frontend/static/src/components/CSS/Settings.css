@@ -21,6 +21,7 @@ height: 100%;
   background-color: white;
   margin: auto;
   border-radius: 18px;
+  overflow: auto;
 }
 .profile{
   width: 38%;

@@ -31,7 +31,7 @@ class EnvelopeItem extends Component {
   render(){
     return(
       <>
-      <div className="square" style={{backgroundColor: this.props.color}}>
+      <div className="square shadow p-3 mb-5 rounded mr-2" style={{backgroundColor: this.props.color}}>
         <div>
           <span><button onClick={() => this.props.deleteEnvelope(this.props.envelope.id)}className="ml-2"style={{backgroundColor: this.props.color, border:'none', borderRadius: '18px'}}>x</button></span>
         </div>

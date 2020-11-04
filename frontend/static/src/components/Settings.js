@@ -47,7 +47,7 @@ class Settings extends Component {
   }
   render(){
     return(
-      <div className="settings mt-4">
+      <div className="settings mt-4 shadow p-3 mb-5 rounded">
         <form onSubmit={(e) => this.addPicture(e, this.state)}>
           <div className="form-group">
             <label htmlFor="avatar">Upload a profile picture:</label>
