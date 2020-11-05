@@ -3,8 +3,8 @@
   position: fixed;
   width: 30px;
   height: 25px;
-  left: 36px;
-  top: 8px;
+  left: 15px;
+  top: 15px;
 }
 
 /* Color/shape of burger icon bars */
@@ -77,4 +77,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .bm-item:hover {
   color: #ffffff;
+}
+
+.profile{
+  width:12%;
+  border-radius: 50%;
+  margin-left:5%;
 }

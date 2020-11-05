@@ -28,7 +28,10 @@ class Navbar extends Component{
         <Link to="/guides" onClick={() => this.closeMenu()}><i className="fas fa-glasses mr-2"></i>Tips & Guides</Link>
         <Link to="/settings" onClick={() => this.closeMenu()}><i className="fas fa-user mr-2"></i>Settings</Link>
       </Menu>
-      <div className='d-flex flex-row-reverse bd-highlight'>
+      <div className='d-flex justify-content-between align-items-start mb-2'>
+        <div>
+        </div>
+        <img className='profile' src={this.props.image ? this.props.image : "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-256.png"} alt=""/>
         <button className="navbar-buttons mr-2 p-2 bd-highlight" onClick={this.props.logOut}>Log out</button>
       </div>
     </>
