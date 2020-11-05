@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button} from "react-bootstrap";
+import { Modal, Button, } from "react-bootstrap";
 import Cookies from 'js-cookie';
 import EnvelopeList from './EnvelopeList'
 import { Pie } from 'react-chartjs-2';
@@ -24,7 +24,7 @@ class DashBoard extends Component{
     this.editEnvelope = this.editEnvelope.bind(this)
   }
   async componentDidMount(){
-    const response = await fetch('api/v1/envelopes/user');
+    const response = await fetch('api/v1/envelopes/user/');
     const data = await response.json();
     this.setState({envelopes:data});
   }
@@ -46,7 +46,7 @@ class DashBoard extends Component{
         body: JSON.stringify(obj),
       };
       const handleError = (err) => console.warn(err);
-      const response = await fetch('/api/v1/envelopes/user', options)
+      const response = await fetch('api/v1/envelopes/user/', options)
       const data = await response.json().catch(handleError)
       const envelopes = [...this.state.envelopes, data];
       this.setState({envelopes})
@@ -92,69 +92,68 @@ class DashBoard extends Component{
     const labels = this.state.envelopes.map(envelope => envelope.name);
     return(
       <>
-      <aside>
-        <Button className="aside-buttons" onClick={() => {this.handleModal()}}>Create Envelope</Button>
-        <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
-        <Modal.Header closeButton>New Envelope</Modal.Header>
-        <Modal.Body>
-          <form onSubmit={(e) => {this.createEnvelope(e, this.state); this.setState({name: '', money:0})}}>
-            <div className="row">
-              <div className="col">
-                <label htmlFor='name' className="mr-2">Envelope name</label>
-                <input type="text" className="form-control" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
+        <aside className='mt-4'>
+          <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
+          <Modal.Header closeButton>New Envelope</Modal.Header>
+          <Modal.Body>
+            <form onSubmit={(e) => {this.createEnvelope(e, this.state); this.setState({name: '', money:0})}}>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor='name' className="mr-2">Envelope name</label>
+                  <input type="text" className="form-control" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                </div>
+                <div className="col">
+                  <label htmlFor="money" className="mr-2">Money</label>
+                  <input type="number" className="form-control" min="0" id="money" name="money" value={this.state.money} onChange={this.handleChange}/>
+                </div>
               </div>
-              <div className="col">
-                <label htmlFor="money" className="mr-2">Money</label>
-                <input type="number" className="form-control" min="0" id="money" name="money" value={this.state.money} onChange={this.handleChange}/>
-              </div>
-            </div>
-            <button className="mt-2" type="submit">Create</button>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-        <Button onClick={() => {this.handleModal()}}>Close</Button>
-        </Modal.Footer>
-        </Modal>
-        <Button className="aside-buttons" onClick={() => {this.handleModal2()}}>Graph</Button>
-        <Modal animation={false} show={this.state.display} onHide={() => {this.handleModal2()}}>
-        <Modal.Header closeButton>Spending habits</Modal.Header>
-        <Modal.Body>
-        <div className="chart">
-          <Pie
-            data = {{
-                datasets: [{
-                    data,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+              <button className="mt-2" type="submit">Create</button>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+          <Button onClick={() => {this.handleModal()}}>Close</Button>
+          </Modal.Footer>
+          </Modal>
+          <Modal animation={false} show={this.state.display} onHide={() => {this.handleModal2()}}>
+          <Modal.Header closeButton>Spending habits</Modal.Header>
+          <Modal.Body>
+          <div className="chart">
+            <Pie
+              data = {{
+                  datasets: [{
+                      data,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                    ],
+                  }],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
                   ],
-                }],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                  borderWidth: 1,
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels
-            }}
-            options={{}}
-          />
-        </div>
-        </Modal.Body>
-        <Modal.Footer>
-        <Button onClick={() => {this.handleModal2()}}>Close</Button>
-        </Modal.Footer>
-        </Modal>
-      </aside>
-      <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope} editEnvelope={this.editEnvelope}/>
+                    borderWidth: 1,
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels
+              }}
+              options={{}}
+            />
+          </div>
+          </Modal.Body>
+          <Modal.Footer>
+          <Button onClick={() => {this.handleModal2()}}>Close</Button>
+          </Modal.Footer>
+          </Modal>
+        </aside>
+        <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope} editEnvelope={this.editEnvelope}/>
+        <footer className='footer'><Button className="aside-buttons" onClick={() => {this.handleModal()}}><i className="fas fa-plus"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal2()}}><i className="fas fa-chart-pie"></i></Button></footer>
       </>
     )
   }

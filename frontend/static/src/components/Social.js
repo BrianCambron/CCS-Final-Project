@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ChatForm from './ChatForm';
+import Chat from './Chat';
 import Cookies from 'js-cookie';
+import { Modal, Button, } from "react-bootstrap";
 import './CSS/Social.css'
 
 
@@ -9,15 +11,24 @@ class Social extends Component {
     super(props);
     this.state = {
       chats:[],
+      show:false,
     }
   this.postChat = this.postChat.bind(this);
+  this.handleModal = this.handleModal.bind(this)
+  // this.fetchMessages = this.fetchMessages.bind(this)
   }
-  componentDidMount(){
-      fetch('/api/v1/chats/')
-      .then(response => response.json())
-      .then(data => this.setState({chats: data}))
-      .catch(error => console.log('Error:', error));
-    }
+  handleModal(){
+    this.setState({show:!this.state.show})
+  }
+  async componentDidMount(){
+    const response = await fetch('api/v1/chats/');
+    const data = await response.json();
+    this.setState({chats:data});
+  }
+  // async componentDidMount(){
+  //   this.fetchMessages();
+  //   // setInterval(this.fetchMessages, 1000);
+  // }
   async postChat(e, obj){
     e.preventDefault();
     const options = {
@@ -29,17 +40,28 @@ class Social extends Component {
       body: JSON.stringify(obj),
     };
     const handleError = (err) => console.warn(err);
-    const response = await fetch('/api/v1/chats', options);
+    const response = await fetch('/api/v1/chats/', options);
     const data = await response.json().catch(handleError);
     const chats = [...this.state.chats, data];
     this.setState({chats})
   }
   render(){
-    console.log(this.state.chats);
     return(
-      <div>
-        <ChatForm chats={this.state.chats} postChat={this.postChat}/>
-      </div>
+      <>
+      <aside className="mt-4">
+      <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
+      <Modal.Header closeButton>New Message</Modal.Header>
+      <Modal.Body>
+        <ChatForm postChat={this.postChat}/>
+      </Modal.Body>
+      <Modal.Footer>
+      <Button onClick={() => {this.handleModal()}}>Close</Button>
+      </Modal.Footer>
+      </Modal>
+      </aside>
+      <Chat chats={this.state.chats}/>
+      <footer className='footer'><Button className='aside-buttons'onClick={() => {this.handleModal()}}><i className="fas fa-comment-alt"></i></Button></footer>
+      </>
     )
   }
 }

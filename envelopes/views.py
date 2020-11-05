@@ -23,12 +23,16 @@ from .serializers import EnvelopeSerializer
 #     def perform_create(self, serializer):
 #         serializer.save(user = self.request.user)
 
-class UserEnvelopeList(generics.ListAPIView):
+class UserEnvelopeListCreateView(generics.ListCreateAPIView):
      serializer_class = EnvelopeSerializer
      permission_classes = (permissions.IsAuthenticated,)
+
      def get_queryset(self):
          user = self.request.user
          return Envelope.objects.filter(user=user)
+
+     def perform_create(self, serializer):
+         serializer.save(user = self.request.user)
 
 
 class UserEnvelopeDetailList(generics.RetrieveUpdateDestroyAPIView):
@@ -37,3 +41,6 @@ class UserEnvelopeDetailList(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Envelope.objects.filter(user=user)
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)

@@ -65,10 +65,10 @@ function EnvelopeList(props){
   const envelopes = props.envelopes.map(envelope => {
     const color = colors[index];
     index === colors.length - 1 ? index = 0 : index++;
-    return <EnvelopeItem key={envelope.id} envelope={envelope} deleteEnvelope={props.deleteEnvelope} editEnvelope={props.editEnvelope}color={color}/>
+    return <EnvelopeItem key={envelope.id} envelope={envelope} deleteEnvelope={props.deleteEnvelope} editEnvelope={props.editEnvelope} color={color}/>
   })
   return(
-    <div style={{display:'flex', flexWrap: 'wrap', marginLeft:'15%'}}>
+    <div style={{display:'flex', flexWrap: 'wrap', justifyContent:'center'}}>
     {envelopes}
     </div>
   )

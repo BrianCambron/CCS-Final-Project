@@ -6,7 +6,7 @@ function Navbar(props){
       <div>
         <button className="navbar-buttons mr-2"><Link to="/dashboard">DashBoard</Link></button>
         <button className="navbar-buttons mr-2"><Link to="/social">Social</Link></button>
-        <button className="navbar-buttons mr-2">Guides</button>
+        <button className="navbar-buttons mr-2"><Link to="/guides">Tips & Guides</Link></button>
       </div>
       <div>
         <img className='profile'src={props.image ? props.image : "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-256.png"} alt=""/>
@@ -18,4 +18,4 @@ function Navbar(props){
     </nav>
   )
 }
-export default Navbar
+export default Navbar;

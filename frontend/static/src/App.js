@@ -6,6 +6,7 @@ import DashBoard from './components/DashBoard';
 import Navbar from './components/Navbar';
 import Settings from './components/Settings';
 import Social from './components/Social';
+import Guides from './components/Guides';
 import Cookies from 'js-cookie';
 
 
@@ -94,6 +95,7 @@ class App extends Component{
           <Route path="/dashboard" render={(props) => (<DashBoard {...props}/>)}/>
           <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} updateImage={this.updateImage}/>)}/>
           <Route path="/social" render={(props) => (<Social {...props}/>)}/>
+          <Route path="/guides" render={(props) => (<Guides {...props}/>)}/>
           <Route exact= {true} path="/">
             {isLoggedIn === false?<LoginForm logIn={this.logIn}/> : <Redirect to="/dashboard" />}
           </Route>

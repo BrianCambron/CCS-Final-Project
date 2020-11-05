@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
 
-function Chat(props){
-  const chats = props.chats.map(chat => <li className="list-group-item mt-3"key={chat.id}>{chat.message}</li>);
-  return(
-    <div className="messages">
-     {chats}
-    </div>
-  )
-}
 class ChatForm extends Component {
   constructor(props){
     super(props);
@@ -23,7 +15,7 @@ class ChatForm extends Component {
   render(){
     return(
       <React.Fragment>
-      <div className="form mt-5" onSubmit={(e) => this.props.postChat(e, this.state)}>
+      <div className="form" onSubmit={(e) => {this.props.postChat(e, this.state); this.setState({user:'',message:''})}}>
         <form className="col-12 col-md-6">
           <div className="form-group">
             <label htmlFor="message">Message</label>
@@ -32,7 +24,6 @@ class ChatForm extends Component {
             <button className="btn btn-primary">Post Message</button>
         </form>
       </div>
-      <Chat chats={this.props.chats}/>
       </React.Fragment>
     )
   }
