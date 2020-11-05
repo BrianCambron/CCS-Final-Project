@@ -48,7 +48,7 @@ class Social extends Component {
   render(){
     return(
       <>
-      <aside className="mt-4">
+      <aside>
       <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
       <Modal.Header closeButton>New Message</Modal.Header>
       <Modal.Body>

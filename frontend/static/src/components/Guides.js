@@ -3,7 +3,7 @@ import './CSS/Guides.css'
 
 function Guides(props){
   return(
-    <div className="guides mt-4">
+    <div className="guides">
       here
     </div>
   )

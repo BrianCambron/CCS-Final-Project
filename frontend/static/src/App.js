@@ -90,7 +90,7 @@ class App extends Component{
     const isLoggedIn = this.state.isLoggedIn;
     return(
       <React.Fragment>
-      {isLoggedIn === false ? '': <Navbar logOut={this.logOut} image={this.state.image}/>}
+      {isLoggedIn === false ? '': <Navbar logOut={this.logOut} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} image={this.state.image}/>}
         <Switch>
           <Route path="/dashboard" render={(props) => (<DashBoard {...props}/>)}/>
           <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} updateImage={this.updateImage}/>)}/>

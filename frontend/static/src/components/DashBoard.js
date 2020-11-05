@@ -92,7 +92,7 @@ class DashBoard extends Component{
     const labels = this.state.envelopes.map(envelope => envelope.name);
     return(
       <>
-        <aside className='mt-4'>
+        <aside>
           <Modal animation={false} show={this.state.show} onHide={() => {this.handleModal()}}>
           <Modal.Header closeButton>New Envelope</Modal.Header>
           <Modal.Body>
