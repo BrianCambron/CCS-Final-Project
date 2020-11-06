@@ -21,7 +21,7 @@ class RegisterForm extends Component {
       <div className="d-flex justify-content-center">
       <form className="col-8 col-sm-6 register" onSubmit={(e) => this.props.registerUser(e, this.state)}>
         <img style={{width: '10%', display:'block', margin: 'auto', paddingTop:'5%'}}src='https://cdn0.iconfinder.com/data/icons/money-25/192/__-2-512.png' alt=''/>
-        <h5 className="Register">Create Account</h5>
+        <h5 className='heading'>Create Account</h5>
         <div className="form-group">
           <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Username" id="username" name="username" autoComplete="on" value={this.state.username} onChange={this.handleChange}/>
         </div>

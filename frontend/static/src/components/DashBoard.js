@@ -63,8 +63,9 @@ class DashBoard extends Component{
       },
     }
     const handleError = (err) => console.warn(err);
-    const response = await fetch(`api/v1/envelopes/user/${id}/`, options)
-    const data = await response.json().catch(handleError)
+    // const response = await fetch(`api/v1/envelopes/user/${id}/`, options)
+    // const data = await response.json().catch(handleError);
+    await fetch(`api/v1/envelopes/user/${id}/`, options).catch(handleError);
     const envelopes = [...this.state.envelopes]
     const index = envelopes.findIndex(envelope => envelope.id === id)
     envelopes.splice(index,1);

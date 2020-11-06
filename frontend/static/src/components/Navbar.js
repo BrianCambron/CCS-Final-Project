@@ -26,7 +26,7 @@ class Navbar extends Component{
         <Link to="/dashboard" onClick={() => this.closeMenu()}><i className="fas fa-home mr-2"></i>DashBoard</Link>
         <Link to="/social" onClick={() => this.closeMenu()}><i className="fas fa-users mr-2"></i>Social</Link>
         <Link to="/guides" onClick={() => this.closeMenu()}><i className="fas fa-glasses mr-2"></i>Tips & Guides</Link>
-        <Link to="/settings" onClick={() => this.closeMenu()}><i className="fas fa-user mr-2"></i>Settings</Link>
+        <Link to="/settings" onClick={() => this.closeMenu()}><i className="fas fa-user mr-2"></i>Profile</Link>
       </Menu>
       <div className='d-flex justify-content-between align-items-start mb-2'>
         <div>

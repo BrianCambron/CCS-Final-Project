@@ -1,6 +1,7 @@
 .guides{
-  margin-left: 15%;
-  width: 70%;
+  display: inline-flex;
+  margin-left: 13%;
+  width: 75%;
   height: 600px;
   padding: 20px;
   background-color: white;

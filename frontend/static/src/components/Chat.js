@@ -8,10 +8,6 @@ class Chat extends Component{
     this.state = {
       show:true,
     }
-    this.handleToast = this.handleToast.bind(this)
-  }
-  handleToast(){
-    this.setState({show:!this.state.show})
   }
   render(){
   const chats = this.props.chats.map(chat =>

@@ -15,20 +15,24 @@ class Social extends Component {
     }
   this.postChat = this.postChat.bind(this);
   this.handleModal = this.handleModal.bind(this)
-  // this.fetchMessages = this.fetchMessages.bind(this)
+  this.fetchMessages = this.fetchMessages.bind(this)
   }
   handleModal(){
     this.setState({show:!this.state.show})
   }
-  async componentDidMount(){
+  async fetchMessages(){
     const response = await fetch('api/v1/chats/');
     const data = await response.json();
     this.setState({chats:data});
   }
-  // async componentDidMount(){
-  //   this.fetchMessages();
-  //   // setInterval(this.fetchMessages, 1000);
-  // }
+  componentDidMount(){
+    this.fetchMessages();
+    this.messageTimer = setInterval(this.fetchMessages, 1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.messageTimer);
+  }
   async postChat(e, obj){
     e.preventDefault();
     const options = {
