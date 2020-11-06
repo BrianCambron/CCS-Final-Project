@@ -63,16 +63,25 @@ class Settings extends Component {
     reader.readAsDataURL(file);
   }
   render(){
+    const profile_id = localStorage.getItem('profile_id')
     return(
       <div className="settings shadow p-3 mb-5">
-        <form onSubmit={(e) => this.addPicture(e, this.state)}>
+        {this.props.image === 'undefined' || this.props.image === undefined? <form onSubmit={(e) => this.addPicture(e, this.state)}>
+          <div className="form-group">
+            <label htmlFor="avatar">Add a profile picture:</label>
+            <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
+            <img style={{width: '30%'}}src={this.state.preview} alt=''/>
+          </div>
+          <button>Add Profile</button>
+        </form>
+        : <form onSubmit={(e) => this.editProfile(e, profile_id)}>
           <div className="form-group">
             <label htmlFor="avatar">Upload a profile picture:</label>
             <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
             <img style={{width: '30%'}}src={this.state.preview} alt=''/>
           </div>
           <button>Add Profile</button>
-        </form>
+        </form>}
         <form>
           <div className="form-group mt-2">
             <label htmlFor="message">Example Messages</label>

@@ -40,13 +40,16 @@ class App extends Component{
     if(data.key){
       Cookies.set('Authorization', `Token ${data.key}`);
       this.setState({isLoggedIn:true});
-      localStorage.setItem('avatar', data.user.profile?.avatar);
+      // localStorage.setItem('avatar', data.user.profile?.avatar);
     }
    }
 
  updateImage(image) {
     this.setState({image});
   }
+
+
+
   async logIn(e, obj){
     e.preventDefault();
     const options = {
@@ -64,9 +67,12 @@ class App extends Component{
     if(data.key){
       Cookies.set('Authorization', `Token ${data.key}`);
       this.setState({isLoggedIn:true, image: data.user.profile?.avatar});
+      localStorage.setItem('profile_id', data.user.profile?.id);
       localStorage.setItem('avatar', data.user.profile?.avatar);
     }
    }
+
+
   async logOut(){
     const options = {
       method:'POST',
@@ -83,6 +89,7 @@ class App extends Component{
       Cookies.remove('Authorization');
       this.setState({isLoggedIn:false});
       localStorage.removeItem('avatar');
+      localStorage.removeItem('profile_id');
       this.props.history.push('/')
     }
    }

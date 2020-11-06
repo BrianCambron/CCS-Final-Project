@@ -4,7 +4,7 @@
   width: 75%;
   height: 600px;
   padding: 20px;
-  background-color: white;
+  background-color: rgb(235, 235, 235);;
   border-radius: 18px;
   overflow: auto;
 }

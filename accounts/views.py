@@ -1,4 +1,5 @@
 from rest_framework import generics
+from django.shortcuts import get_object_or_404
 
 
 from .models import Profile
@@ -15,5 +16,4 @@ class ProfileRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
+    # def get_object_or_404(self):
