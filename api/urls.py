@@ -1,7 +1,6 @@
 from django.urls import path, include
 
 
-
 urlpatterns = [
     path('chats/', include('chats.urls')),
     path('envelopes/', include('envelopes.urls')),
