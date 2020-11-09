@@ -10,9 +10,10 @@ class EnvelopeSerializer(serializers.ModelSerializer):
     class Meta:
         depth = 1
         model = Envelope
-        fields = ('user', 'name', 'money', 'receipt')
+        fields = ('user', 'name', 'money')
+
 
 class ReceiptSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receipt
-        fields = ('envelope', 'total_amount', 'image', 'merchant_name')
+        fields = ('id', 'envelope', 'total_amount', 'image', 'merchant_name')

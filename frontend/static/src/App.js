@@ -16,11 +16,13 @@ class App extends Component{
     this.state = {
       isLoggedIn: !!Cookies.get('Authorization'),
       image: localStorage.getItem('avatar'),
+      phone_number:localStorage.getItem('phone_number')
     }
     this.registerUser = this.registerUser.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.updateImage = this.updateImage.bind(this);
+    this.updatePhone = this.updatePhone.bind(this);
   }
   async registerUser(e, obj){
     e.preventDefault();
@@ -47,7 +49,9 @@ class App extends Component{
  updateImage(image) {
     this.setState({image});
   }
-
+  updatePhone(updatedPhone){
+    this.setState({updatedPhone})
+  }
 
 
   async logIn(e, obj){
@@ -69,6 +73,7 @@ class App extends Component{
       this.setState({isLoggedIn:true, image: data.user.profile?.avatar});
       localStorage.setItem('profile_id', data.user.profile?.id);
       localStorage.setItem('avatar', data.user.profile?.avatar);
+      localStorage.setItem('phone_number', data.user.profile?.phone_number);
     }
    }
 
@@ -90,6 +95,7 @@ class App extends Component{
       this.setState({isLoggedIn:false});
       localStorage.removeItem('avatar');
       localStorage.removeItem('profile_id');
+      localStorage.removeItem('phone_number');
       this.props.history.push('/')
     }
    }
@@ -100,7 +106,7 @@ class App extends Component{
       {isLoggedIn === false ? '': <Navbar logOut={this.logOut} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} image={this.state.image}/>}
         <Switch>
           <Route path="/dashboard" render={(props) => (<DashBoard {...props}/>)}/>
-          <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} updateImage={this.updateImage}/>)}/>
+          <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} updateImage={this.updateImage} updatePhone={this.updatePhone} phone_number={this.state.phone_number}/>)}/>
           <Route path="/social" render={(props) => (<Social {...props}/>)}/>
           <Route path="/guides" render={(props) => (<Guides {...props}/>)}/>
           <Route exact= {true} path="/">

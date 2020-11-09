@@ -2,9 +2,10 @@ from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from django.http import HttpResponse
 
 from .models import Envelope, Receipt
+from .services import job
 from .serializers import EnvelopeSerializer, ReceiptSerializer
 
 
@@ -48,7 +49,12 @@ class UserEnvelopeDetailList(generics.RetrieveUpdateDestroyAPIView):
         serializer.save(user = self.request.user)
 
 
-class ReceiptView(APIView):
-    def get(self, request):
-        receipts = Receipt.objects.all()
-        return Response({"receipts": receipts})
+class ReceiptView(generics.ListCreateAPIView):
+    queryset = Receipt.objects.all();
+    serializer_class = ReceiptSerializer
+
+
+# class MessageUser(APIView):
+#     def get(self, request, format=None):
+#         job(request)
+#         return Response("messages sent!", 200)
