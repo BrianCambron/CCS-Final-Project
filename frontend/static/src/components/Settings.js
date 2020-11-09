@@ -86,17 +86,9 @@ class Settings extends Component {
           <div className="form-group mt-2">
             <label htmlFor="message">Example Messages</label>
             <select className="form-control" id="message">
-              <option>Stop Spending Money!</option>
-              <option>You are reaching your limit!</option>
-              <option>Please don't</option>
-            </select>
-            </div>
-            <div className="form-group">
-            <label htmlFor="percentage">At what percentage would you like it sent out?</label>
-            <select multiple className="form-control" id="percentage">
-              <option>75%</option>
-              <option>50%</option>
-              <option>25%</option>
+              <option>You saved ____ amount of money!</option>
+              <option>Congrats! You saved ____.</option>
+              <option>You are getting closer to your goal! You saved ____.</option>
             </select>
             </div>
             <div className="form-group">

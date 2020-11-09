@@ -18,6 +18,7 @@ pillow = "~=8.0.1"
 django-rest-auth = "~=0.9.5"
 django-allauth = "~=0.43.0"
 twilio = "*"
+schedule = "~=0.6.0"
 
 [requires]
 python_version = "3.8"

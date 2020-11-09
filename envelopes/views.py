@@ -1,9 +1,11 @@
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
-from .models import Envelope
-from .serializers import EnvelopeSerializer
+from .models import Envelope, Receipt
+from .serializers import EnvelopeSerializer, ReceiptSerializer
 
 
 # class EnvelopeListCreateView(generics.ListCreateAPIView):
@@ -44,3 +46,9 @@ class UserEnvelopeDetailList(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
+
+
+class ReceiptView(APIView):
+    def get(self, request):
+        receipts = Receipt.objects.all()
+        return Response({"receipts": receipts})
