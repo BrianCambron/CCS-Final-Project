@@ -4,7 +4,11 @@ import threading
 import schedule
 import time
 from .models import Envelope
-from django.db.models import Sum
+import sys
+sys.path.append('accounts')
+from accounts.models import Profile
+import random
+import requests
 
 # def send_sms(request):
 #     account_sid = os.environ['TWILIO_ACCOUNT_SID']
@@ -16,58 +20,38 @@ from django.db.models import Sum
 #                                   from_='+19382220702',
 #                                   to='+18649071445'
 #                               )
-#
-#     return HttpResponse("messages sent!", 200)
-#
+
+
 def job():
-    # account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    # auth_token = os.environ['TWILIO_AUTH_TOKEN']
-    # client = Client(account_sid, auth_token)
-    #
-    # message = client.messages.create(
-    #                               body='Hi, Brian. How are you?',
-    #                               from_='+19382220702',
-    #                               to='+18649071445'
-    #
-    # sum = Envelope.objects.aggregate(Sum('money'))
-    # print(sum)
 
-    for e in Envelope.objects.all():
-        print('Hey!', e.user, 'you saved', 'amount of money from the', e.name, 'envelope', e.money)
+    for y in Profile.objects.all():
+    #     for x in Envelope.objects.all():
+        username = y.user
+    #         envelope_name = x.name
+    #         envelope_total = str(x.money)
+    #         phone_number = y.phone_number
+    #
+        good_message_1 = "Becoming rich is hard. Staying broke is hard. Choose your hard. \n – Eric Worre \n Hey, %s. You save amount of money" % (username)
+        good_message_2 = "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver. \n – Ayn Rand \n Hey, %s. You save amount of money" % (username)
+        good_message_3 = "You don’t have to see the whole staircase, just take the first step. \n – Martin Luther King, Jr \n Hey, %s. You save amount of money" % (username)
+        bad_message_1 = "If we command our wealth, we shall be rich and free. If our wealth commands us, we are poor indeed. \n – Edmund Burke \n Hey, %s. Did not save any money this week" % (username)
+        bad_message_2 = "Too many people spend money they haven’t earned, to buy things they don’t want, to impress people that they don’t like. \n – Will Rogers \n Hey, %s. Did not save any money this week" % (username)
+        bad_message_3 = "Just keep swimming. \n – Dory (from Finding Nemo) \n Hey, %s. Did not save any money this week" % (username)
 
-job()
-# def run_threaded(job_func):
-#     job_thread = threading.Thread(target=job_func)
-#     job_thread.start()
+        # account_sid = os.environ['TWILIO_ACCOUNT_SID']
+        # auth_token = os.environ['TWILIO_AUTH_TOKEN']
+        # client = Client(account_sid, auth_token)
+        #
+        # if y.phone_number:
+        #     client.messages.create(
+        #                              body=good_message_2,
+        #                              from_='+19382220702',
+        #                              to=y.phone_number
+        #                           )
+            # if(sum_of_receipts < envelope_total):
+            #     print(random.choice([good_message_1, good_message_2, good_message_3]))
+            # elif(sum_of_receipts > envelope_total):
+            #     print(random.choice([bad_message_1, bad_message_2, bad_message_3]))
+
 #
-# schedule.every(10).seconds.do(run_threaded, job)
-
-# while 1:
-#     schedule.run_pending()
-#     time.sleep(1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # schedule.every().monday.at("12:00").do(job)
-
-
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(1)
+job()

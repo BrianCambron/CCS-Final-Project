@@ -10,6 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to="profiles/", blank=True, null=True)
     phone_number = models.CharField(max_length=12, blank=True)
+    message = models.TextField(blank=True)
 
     def __str__(self):
         return self.user.username

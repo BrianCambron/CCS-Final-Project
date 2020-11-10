@@ -3,6 +3,7 @@ import { Modal, Button, } from "react-bootstrap";
 import Cookies from 'js-cookie';
 import EnvelopeList from './EnvelopeList'
 import { Pie } from 'react-chartjs-2';
+import Receipt from './Receipt';
 import './CSS/DashBoard.css'
 
 
@@ -13,6 +14,7 @@ class DashBoard extends Component{
       envelopes:[],
       show:false,
       display:false,
+      hide:false,
       name:'',
       money: 0,
     }
@@ -21,6 +23,7 @@ class DashBoard extends Component{
     this.handleChange = this.handleChange.bind(this)
     this.deleteEnvelope = this.deleteEnvelope.bind(this)
     this.handleModal2 = this.handleModal2.bind(this)
+    this.handleModal3 = this.handleModal3.bind(this)
     this.editEnvelope = this.editEnvelope.bind(this)
   }
   async componentDidMount(){
@@ -34,6 +37,9 @@ class DashBoard extends Component{
   }
   handleModal2(){
     this.setState({display:!this.state.display})
+  }
+  handleModal3(){
+    this.setState({hide:!this.state.hide})
   }
   async createEnvelope(e, obj){
     e.preventDefault();
@@ -152,9 +158,18 @@ class DashBoard extends Component{
           <Button onClick={() => {this.handleModal2()}}>Close</Button>
           </Modal.Footer>
           </Modal>
+          <Modal animation={false} show={this.state.hide} onHide={() => {this.handleModal3()}}>
+          <Modal.Header closeButton>Upload Receipt</Modal.Header>
+          <Modal.Body>
+            <Receipt envelopes={this.state.envelopes}/>
+          </Modal.Body>
+          <Modal.Footer>
+          <Button onClick={() => {this.handleModal3()}}>Close</Button>
+          </Modal.Footer>
+          </Modal>
         </aside>
         <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope} editEnvelope={this.editEnvelope}/>
-        <footer className='footer'><Button className="aside-buttons" onClick={() => {this.handleModal()}}><i className="fas fa-plus"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal2()}}><i className="fas fa-chart-pie"></i></Button></footer>
+        <footer className='footer'><Button className="aside-buttons" onClick={() => {this.handleModal()}}><i className="fas fa-plus"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal2()}}><i className="fas fa-chart-pie"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal3()}}><i className="fas fa-receipt"></i></Button></footer>
       </>
     )
   }
