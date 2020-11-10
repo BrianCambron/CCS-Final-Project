@@ -3,7 +3,8 @@ from twilio.rest import Client
 import threading
 import schedule
 import time
-
+from .models import Envelope
+from django.db.models import Sum
 
 # def send_sms(request):
 #     account_sid = os.environ['TWILIO_ACCOUNT_SID']
@@ -27,12 +28,12 @@ def job():
     #                               body='Hi, Brian. How are you?',
     #                               from_='+19382220702',
     #                               to='+18649071445'
-    #                           )
+    #
+    # sum = Envelope.objects.aggregate(Sum('money'))
+    # print(sum)
 
-
-    print('Hello, World');
-
-
+    for e in Envelope.objects.all():
+        print('Hey!', e.user, 'you saved', 'amount of money from the', e.name, 'envelope', e.money)
 
 job()
 # def run_threaded(job_func):
