@@ -22,13 +22,13 @@ def debug_task(self):
     print(f'Request: {self.request!r}')
 
 app.conf.beat_schedule = {
-    'add-every-30-seconds': {
-        'task': 'envelopes.tasks.hello',
+    'add-every-10-seconds': {
+        'task': 'envelopes.tasks.send_sms',
         'schedule': 10.0,
-        'args': ['Brian']
+        'args': ['+18649071445']
     },
 }
 app.conf.timezone = 'UTC'
 
-#celery -A config worker --loglevel=INFO
-#celery -A config beat -l info
+# celery -A config worker --loglevel=INFO
+# celery -A config beat -l info
