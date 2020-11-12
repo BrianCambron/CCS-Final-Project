@@ -195,5 +195,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
 }
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+CELERY_BROKER_URL = 'redis://:p98f35853fc053b0f48009ea7dbda8d74b75f989d74709f76f9dfd3b9f7104af2@ec2-54-224-86-61.compute-1.amazonaws.com:12229'
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'

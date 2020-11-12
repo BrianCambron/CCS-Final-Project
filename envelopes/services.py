@@ -1,14 +1,14 @@
 import os
-from twilio.rest import Client
-import threading
-import schedule
-import time
-from .models import Envelope
-import sys
-sys.path.append('accounts')
-from accounts.models import Profile
 import random
 import requests
+from twilio.rest import Client
+
+import sys
+from accounts.models import Profile
+sys.path.append('accounts')
+from .models import Envelope
+
+
 
 # def send_sms(request):
 #     account_sid = os.environ['TWILIO_ACCOUNT_SID']
