@@ -18,13 +18,14 @@ class DashBoard extends Component{
       name:'',
       money: 0,
     }
-    this.createEnvelope = this.createEnvelope.bind(this)
-    this.handleModal = this.handleModal.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.deleteEnvelope = this.deleteEnvelope.bind(this)
-    this.handleModal2 = this.handleModal2.bind(this)
-    this.handleModal3 = this.handleModal3.bind(this)
-    this.editEnvelope = this.editEnvelope.bind(this)
+    this.createEnvelope = this.createEnvelope.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.deleteEnvelope = this.deleteEnvelope.bind(this);
+    this.handleModal2 = this.handleModal2.bind(this);
+    this.handleModal3 = this.handleModal3.bind(this);
+    this.editEnvelope = this.editEnvelope.bind(this);
+    this.subtractTotal = this.subtractTotal.bind(this);
   }
   async componentDidMount(){
     const response = await fetch('api/v1/envelopes/user/');
@@ -94,6 +95,24 @@ class DashBoard extends Component{
      envelopes[index] = data;
      this.setState({envelopes})
   }
+  async subtractTotal(id, data){
+    const envelopes = [...this.state.envelopes];
+    const index = envelopes.findIndex(envelope => envelope.id === id);
+    const selectedEnvelope = envelopes[index];
+    selectedEnvelope.money = selectedEnvelope.money - data;
+    let updatedData = {money: selectedEnvelope.money, name:selectedEnvelope.name}
+    const options = {
+      method:'PUT',
+      headers:{
+        'X-CSRFToken': Cookies.get('csrftoken'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData),
+    };
+    const handleError = (err) => console.warn(err);
+    const response = await fetch(`api/v1/envelopes/user/${id}/`, options);
+
+  }
   render(){
     const data = this.state.envelopes.map(envelope => envelope.money);
     const labels = this.state.envelopes.map(envelope => envelope.name);
@@ -161,7 +180,7 @@ class DashBoard extends Component{
           <Modal animation={false} show={this.state.hide} onHide={() => {this.handleModal3()}}>
           <Modal.Header closeButton>Upload Receipt</Modal.Header>
           <Modal.Body>
-            <Receipt envelopes={this.state.envelopes}/>
+            <Receipt envelopes={this.state.envelopes} subtractTotal={this.subtractTotal}/>
           </Modal.Body>
           <Modal.Footer>
           <Button onClick={() => {this.handleModal3()}}>Close</Button>

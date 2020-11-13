@@ -5,7 +5,7 @@ class Receipt extends Component {
   constructor(props){
     super(props);
     this.state = {
-      envelope: 0,
+      envelope: this.props.envelopes.length === 0? 0 : this.props.envelopes[0].id,
       total_amount: 0,
       image:null,
       preview:'',
@@ -46,6 +46,7 @@ class Receipt extends Component {
     const handleError = (err) => console.warn(err);
     const response = await fetch('api/v1/envelopes/receipts/', options);
     const data = await response.json().catch(handleError);
+    this.props.subtractTotal(data.envelope, data.total_amount)
   }
 
   handleInput(event){
@@ -75,9 +76,9 @@ class Receipt extends Component {
       <>
       <form onSubmit={(e) => this.readReceipt(e, this.state)}>
         <label htmlFor="envelope">Choose an Envelope:</label>
-        <select className="mb-2" name="envelope" id="envelope" onChange={this.handleInput} value={this.state.envelope}>
-          {options}
-        </select>
+          <select className="mb-2" name="envelope" id="envelope" onChange={this.handleInput} value={this.state.envelope}>
+            {options}
+          </select>
         <div className="form-group">
           <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
           <img style={{width: '30%'}}src={this.state.preview} alt=''/>
@@ -91,7 +92,7 @@ class Receipt extends Component {
         </div>
         <div>
         <label htmlFor='total_amount'>Total Amount</label>
-        <input type='number' min='0' className="form-control" id='total_amount' name='total_amount' value={this.state.total_amount} onChange={this.handleInput}/>
+        <input type='number' min='0' className="form-control" id='total_amount' step='any' name='total_amount' value={this.state.total_amount} onChange={this.handleInput}/>
         </div>
         <button>Add Receipt</button>
       </form>

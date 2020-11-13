@@ -14,8 +14,9 @@ app = Celery('tasks', broker='redis://:p98f35853fc053b0f48009ea7dbda8d74b75f989d
 
 # def send_sms(phone_number):
 #
-#     for y in Profile.objects.all():
-#         username = y.user
+#     for Profile in Profile.objects.all():
+#         username = Profile.user
+#         phone_number = Profile.phone_number
 #
 #         good_message_1 = "Becoming rich is hard. Staying broke is hard. Choose your hard. \n – Eric Worre \n Hey, %s. You save amount of money" % (username)
 #         good_message_2 = "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver. \n – Ayn Rand \n Hey, %s. You save amount of money" % (username)
@@ -28,7 +29,7 @@ app = Celery('tasks', broker='redis://:p98f35853fc053b0f48009ea7dbda8d74b75f989d
 #         auth_token = os.environ['TWILIO_AUTH_TOKEN']
 #         client = Client(account_sid, auth_token)
 #
-#         if y.phone_number:
+#         if Profile.phone_number:
 #             client.messages.create(
 #              body=good_message_3,
 #              from_='+19382220702',
