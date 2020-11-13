@@ -44,6 +44,8 @@ class ReceiptView(generics.ListCreateAPIView):
 @api_view(['POST'])
 def job(request):
     if request.method == 'POST':
+
+        image = request.FILES['image'].read()
         url = 'https://api.taggun.io/api/receipt/v1/simple/file'
 
         headers = {'apikey': 'e91827b01c5e11ebafc7c5a18819396c'}
@@ -51,7 +53,7 @@ def job(request):
         files = {
           'file': (
             'IMG_2719', # set a filename for the file
-            open('./envelopes/IMG_2719.jpeg', 'rb'), # the actual file
+            image, # the actual file
             'image/jpg'), # content-type for the file
 
           # other optional parameters for Taggun API (eg: incognito, refresh, ipAddress, language)
@@ -60,13 +62,23 @@ def job(request):
             'false') #value for the parameters
           }
 
-        response = requests.post(url, files=files, headers=headers)
+        # import pdb; pdb.set_trace()
 
+        response = requests.post(url, files=files, headers=headers)
+        # import pdb; pdb.set_trace()
         data = json.loads(response.text)
         total_amount = data.get('totalAmount')
         merchant_name = data.get('merchantName')
         print(total_amount)
-        return HttpResponse("messages sent!", 200)
+        return Response(data)
+
+
+
+
+
+
+
+
 
     # for y in Receipt.objects.all():
     #     # print(y.__dict__)

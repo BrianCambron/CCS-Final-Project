@@ -13,8 +13,8 @@ class Envelope(models.Model):
 
 class Receipt(models.Model):
     envelope = models.ForeignKey(Envelope, on_delete=models.CASCADE, related_name='receipts')
-    total_amount = models.PositiveIntegerField(validators=[MinValueValidator(0)], null=True)
-    image = models.ImageField(upload_to='envelopes/', blank=True, null=True)
+    total_amount = models.FloatField(validators=[MinValueValidator(0)], null=True)
+    # image = models.ImageField(upload_to='envelopes/', blank=True, null=True)
     merchant_name = models.CharField(max_length = 255)
 
     def __str__(self):
