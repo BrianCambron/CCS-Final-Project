@@ -11,7 +11,7 @@ class EnvelopeSerializer(serializers.ModelSerializer):
     class Meta:
         depth = 1
         model = Envelope
-        fields = ('user', 'name', 'money', 'sum_of_receipts')
+        fields = ('id', 'user', 'name', 'money', 'sum_of_receipts')
 
     def get_sum_of_receipts(self, obj):
         return Receipt.objects.filter(envelope=obj).aggregate(Sum('total_amount'))

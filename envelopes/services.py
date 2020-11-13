@@ -7,25 +7,13 @@ import requests
 # from accounts.models import Profile
 # sys.path.append('accounts')
 from .models import Envelope, Receipt
-# #
-#
-#
-# def send_sms(request):
-#     account_sid = os.environ['TWILIO_ACCOUNT_SID']
-#     auth_token = os.environ['TWILIO_AUTH_TOKEN']
-#     client = Client(account_sid, auth_token)
-#
-#     message = client.messages.create(
-#                                   body='Hi there!',
-#                                   from_='+19382220702',
-#                                   to='+18649071445'
-#                               )
-#
-#
+import json
+
+
 def job():
-# #
+
     for y in Receipt.objects.all():
-        # print(y.image.url)
+        # print(y.__dict__)
 
         url = 'https://api.taggun.io/api/receipt/v1/simple/url'
 
@@ -39,8 +27,10 @@ def job():
         }
 
         response = requests.post(url, data=payload, headers=headers)
-
-        print(response.content)
+        data = json.loads(response.text)
+        total_amount = data.get('totalAmount')
+        merchant_name = data.get('merchantName')
+        # print(total_amount)
 #             if(sum_of_receipts < envelope_total):
 #                 print(random.choice([good_message_1, good_message_2, good_message_3]))
 #             elif(sum_of_receipts > envelope_total):
