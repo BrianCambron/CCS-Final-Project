@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, } from "react-bootstrap";
+import { Modal, Button} from "react-bootstrap";
 import Cookies from 'js-cookie';
 import EnvelopeList from './EnvelopeList'
 import { Pie } from 'react-chartjs-2';
@@ -99,8 +99,17 @@ class DashBoard extends Component{
     const envelopes = [...this.state.envelopes];
     const index = envelopes.findIndex(envelope => envelope.id === id);
     const selectedEnvelope = envelopes[index];
+    const initialMoney = selectedEnvelope.money
+    const halfOfEnvelope = initialMoney/2
     selectedEnvelope.money = selectedEnvelope.money - data;
     let updatedData = {money: selectedEnvelope.money, name:selectedEnvelope.name}
+
+    if(halfOfEnvelope === updatedData.money){
+      alert('You have spent 50% of what you alloted')
+    }
+    else if(updatedData.money === 0){
+      alert('You have spent everything in this envelope!')
+    }
     const options = {
       method:'PUT',
       headers:{

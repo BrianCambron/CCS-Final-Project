@@ -85,7 +85,7 @@ class Receipt extends Component {
         </div>
         <button>Read Receipt</button>
       </form>
-      <form onSubmit={(e) => this.uploadReceipt(e, this.state)}>
+      <form onSubmit={(e) => {this.uploadReceipt(e, this.state); this.setState({merchant_name:'', total_amount:0})}}>
         <div>
           <label htmlFor='merchant_name'>Merchant Name</label>
           <input type='text' className="form-control" id="merchant_name" name="merchant_name" value={this.state.merchant_name} onChange={this.handleInput}/>
