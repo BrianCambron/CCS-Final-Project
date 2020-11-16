@@ -20,7 +20,7 @@ class RegisterForm extends Component {
     return(
       <div className="d-flex justify-content-center">
       <form className="col-8 col-sm-6 register" onSubmit={(e) => this.props.registerUser(e, this.state)}>
-        <img style={{width: '10%', display:'block', margin: 'auto', paddingTop:'5%'}}src='https://cdn0.iconfinder.com/data/icons/money-25/192/__-2-512.png' alt=''/>
+        <img style={{width: '10%', display:'block', margin: 'auto', paddingTop:'5%'}}src='https://cdn0.iconfinder.com/data/icons/aami-flat-business-set-3/64/business_3-14-512.png' alt=''/>
         <h5 className='heading'>Create Account</h5>
         <div className="form-group">
           <input style={{width: '75%', borderRadius: '18px'}}type='text' className="form-control" placeholder="Username" id="username" name="username" autoComplete="on" value={this.state.username} onChange={this.handleChange}/>
@@ -35,8 +35,8 @@ class RegisterForm extends Component {
           <input style={{width: '75%', borderRadius: '18px'}}type='password' className="form-control" placeholder="Confirm Password" id="password2" name="password2" autoComplete="on" value={this.state.password2} onChange={this.handleChange}/>
         </div>
         <div className="form-bottom">
-          <button className="form-button">Register</button>
-          <Link to="/">Already have an account?</Link>
+          <button className="form-button-register">Register</button>
+          <Link style={{color: 'blue'}} to="/">Already have an account?</Link>
         </div>
       </form>
       </div>

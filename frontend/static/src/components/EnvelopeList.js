@@ -9,6 +9,7 @@ class EnvelopeItem extends Component {
       isEditing: false,
       name: this.props.envelope.name,
       money: this.props.envelope.money,
+      remaining: this.props.envelope.money,
     }
     this.handleInput = this.handleInput.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
@@ -42,7 +43,7 @@ class EnvelopeItem extends Component {
           <hr/>
           {this.state.isEditing?
             <input type="number"  min="0" id="money" name="money" value={this.state.money} onChange={this.handleInput} required/>
-            :<p>${this.props.envelope.money}</p>}
+            :<p>{this.props.envelope.money < 0? 'Over your budget by: ': '$'}{this.props.envelope.money}</p>}
         </div>
         {
           this.state.isEditing
@@ -60,7 +61,7 @@ class EnvelopeItem extends Component {
 
 
 function EnvelopeList(props){
-  const colors = ['#ebebeb', '#f5a25d', '#fa7f72', '#389393', '#d2d3c9', '#0e918c', '#f6830f', '#bb2205',];
+  const colors = ['#e6d5b8', '#f5a25d', '#fa7f72', '#bb2205', '#d2d3c9', '#b8de6f', '#f6830f', '#fcdada', '#fddb3a', '#cbaf87', '#a4b787', '#9656a1', '#b0deff', '#e4508f', '#20716a', '#ea5455'];
   let index = 0;
   const envelopes = props.envelopes.map(envelope => {
     const color = colors[index];

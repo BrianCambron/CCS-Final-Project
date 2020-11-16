@@ -36,7 +36,7 @@ class Chat extends Component{
           delay={{ show: 250, hide: 400 }}
           overlay={renderTooltip}
         >
-          <img style={{width:'20%'}}src="https://cdn3.iconfinder.com/data/icons/currency-and-money-4/64/Balance-Budget-Money-Arrows-Avatar-512.png" alt=""/>
+          <img style={{width:'20%'}}src="https://cdn2.iconfinder.com/data/icons/business-finance-character/28/20-512.png" alt=""/>
         </OverlayTrigger>,
         </div>
         <div className="p-2 bd-highlight">

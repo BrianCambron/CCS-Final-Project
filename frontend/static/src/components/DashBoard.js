@@ -123,6 +123,7 @@ class DashBoard extends Component{
 
   }
   render(){
+    console.log(this.state.envelopes);
     const data = this.state.envelopes.map(envelope => envelope.money);
     const labels = this.state.envelopes.map(envelope => envelope.name);
     return(
@@ -142,7 +143,7 @@ class DashBoard extends Component{
                   <input type="number" className="form-control" min="0" id="money" name="money" value={this.state.money} onChange={this.handleChange}/>
                 </div>
               </div>
-              <button className="mt-2" type="submit">Create</button>
+              <button className="mt-2 btn btn-info" type="submit">Create</button>
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -158,21 +159,41 @@ class DashBoard extends Component{
                   datasets: [{
                       data,
                   backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    '#e6d5b8',
+                    '#f5a25d',
+                    '#fa7f72',
+                    '#bb2205',
+                    '#d2d3c9',
+                    '#b8de6f',
+                    '#f6830f',
+                    '#fcdada',
+                    '#fddb3a',
+                    '#cbaf87',
+                    '#a4b787',
+                    '#9656a1',
+                    '#b0deff',
+                    '#e4508f',
+                    '#20716a',
+                    '#ea5455'
                     ],
                   }],
                   borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#e6d5b8',
+                    '#f5a25d',
+                    '#fa7f72',
+                    '#bb2205',
+                    '#d2d3c9',
+                    '#b8de6f',
+                    '#f6830f',
+                    '#fcdada',
+                    '#fddb3a',
+                    '#cbaf87',
+                    '#a4b787',
+                    '#9656a1',
+                    '#b0deff',
+                    '#e4508f',
+                    '#20716a',
+                    '#ea5455'
                   ],
                     borderWidth: 1,
                   // These labels appear in the legend and in the tooltips when hovering different arcs

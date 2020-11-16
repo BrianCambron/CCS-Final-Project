@@ -81,9 +81,9 @@ class Receipt extends Component {
           </select>
         <div className="form-group">
           <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
-          <img style={{width: '30%'}}src={this.state.preview} alt=''/>
+          <img className="mt-2"style={{width: '30%'}}src={this.state.preview} alt=''/>
         </div>
-        <button>Read Receipt</button>
+        <button className="mb-2 btn btn-info">Read Receipt</button>
       </form>
       <form onSubmit={(e) => {this.uploadReceipt(e, this.state); this.setState({merchant_name:'', total_amount:0})}}>
         <div>
@@ -94,7 +94,7 @@ class Receipt extends Component {
         <label htmlFor='total_amount'>Total Amount</label>
         <input type='number' min='0' className="form-control" id='total_amount' step='any' name='total_amount' value={this.state.total_amount} onChange={this.handleInput}/>
         </div>
-        <button>Add Receipt</button>
+        <button className="mt-2 btn btn-info">Add Receipt</button>
       </form>
       </>
     )

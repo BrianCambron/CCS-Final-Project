@@ -7,18 +7,20 @@ class Settings extends Component {
     super(props);
     this.state = {
       image: props.image,
-      preview:props.image,
-      message:props.message,
-      phone_number:props.phone_number,
+      preview: props.image,
+      phone_number: props.phone_number,
+      message: props.message,
     }
-    this.addProfile = this.addProfile.bind(this)
-    this.handleImage = this.handleImage.bind(this)
-    this.editProfile = this.editProfile.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.addProfile = this.addProfile.bind(this);
+    this.handleImage = this.handleImage.bind(this);
+    this.editProfile = this.editProfile.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
   handleChange(event){
     this.setState({[event.target.name]: event.target.value});
   }
+
   async addProfile(e){
     e.preventDefault();
     const formData = new FormData()
@@ -36,12 +38,19 @@ class Settings extends Component {
     const data = await response.json().catch(handleError);
     this.props.updateImage(data.avatar);
     this.props.updatePhone(data.phone_number);
+    this.props.updateMessage(data.message);
   }
-  async editProfile(e, id){
+
+  async editProfile(e, id, obj){
     e.preventDefault();
     const formData = new FormData();
-    formData.append('avatar', this.state.image);
+
+    if(typeof obj.image !== 'string'){
+      formData.append('avatar', this.state.image);
+    };
+
     formData.append('phone_number', this.state.phone_number);
+    formData.append('message', this.state.message);
     const options = {
       method:'PUT',
       headers:{
@@ -49,12 +58,15 @@ class Settings extends Component {
       },
       body:formData,
     }
+
     const handleError = (err) => console.warn(err);
     const response = await fetch(`/api/v1/profile/${id}/`, options)
     const data = await response.json().catch(handleError);
     this.props.updateImage(data.avatar);
     this.props.updatePhone(data.phone_number);
+    this.props.updateMessage(data.message);
   }
+
   handleImage(e){
     let file = e.target.files[0];
     this.setState({
@@ -70,6 +82,7 @@ class Settings extends Component {
     }
     reader.readAsDataURL(file);
   }
+
   render(){
     const profile_id = localStorage.getItem('profile_id')
     return(
@@ -78,36 +91,38 @@ class Settings extends Component {
           <div className="form-group">
             <label htmlFor="avatar">Add a profile picture:</label>
             <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
-            <img style={{width: '30%'}}src={this.state.preview} alt=''/>
+            <img className="mt-2" style={{width: '30%'}}src={this.state.preview} alt=''/>
           </div>
           <div className="form-group">
             <label htmlFor="phone">Enter your phone number:</label>
-            <input className="ml-2" type="tel" id="phone" name="phone" value={this.state.phone_number} onChange={this.handleChange} required/>
+            <input className="ml-2" type="tel" id="phone_number" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} required/>
             <small className='ml-1'>Format: +1112223333</small>
+            <p className="mt-2" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Each Thursday you will receive an inspirational message telling you if you saved money or not. You can also attach your own personalized message down below.</p>
+              <div className="form-group">
+                <label htmlFor="message">Create Custom Message:</label>
+                <textarea className="form-control" id="message" rows="3" name="message" value={this.state.message} onChange={this.handleChange}/>
+             </div>
           </div>
           <button>Add Profile</button>
         </form>
-        : <form onSubmit={(e) => this.editProfile(e, profile_id)}>
+        : <form onSubmit={(e) => this.editProfile(e, profile_id, this.state)}>
           <div className="form-group">
             <label htmlFor="avatar">Upload a profile picture:</label>
             <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
-            <img style={{width: '30%'}}src={this.state.preview} alt=''/>
+            <img className="mt-2" style={{width: '30%'}}src={this.state.preview} alt=''/>
           </div>
           <div className="form-group">
             <label htmlFor="phone">Enter your phone number:</label>
-            <input className="ml-2" type="tel" id="phone" name="phone" value={this.state.phone_number} onChange={this.handleChange} required/>
+            <input className="ml-2" type="tel" id="phone_number" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} required/>
             <small className='ml-1'>Format: +12223334444</small>
+            <p className="mt-2" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Each Thursday you will receive an inspirational message telling you if you saved money or not. You can also attach your own personalized message down below.</p>
+              <div className="form-group">
+                <label htmlFor="message">Create Custom Message:</label>
+                <textarea className="form-control" id="message" rows="3" name="message" value={this.state.message} onChange={this.handleChange}/>
+             </div>
           </div>
-          <button>Add Profile</button>
+          <button className="btn btn-info">Add Profile</button>
         </form>}
-        <form>
-          <p className="mt-2" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Each Thursday you will receive an inspirational message telling you if you saved money or not. You can also attach your own personalized message down below.</p>
-            <div className="form-group">
-              <label htmlFor="custom">Create Custom Message:</label>
-              <textarea className="form-control" id="custom" rows="3"></textarea>
-           </div>
-          <button>Done</button>
-       </form>
       </div>
     )
   }

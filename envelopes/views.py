@@ -4,6 +4,7 @@ from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import math
 
 
 import json
@@ -39,7 +40,17 @@ class UserEnvelopeDetailList(generics.RetrieveUpdateDestroyAPIView):
 class ReceiptView(generics.ListCreateAPIView):
     queryset = Receipt.objects.all();
     serializer_class = ReceiptSerializer
-
+#
+# def test():
+#     for x in Receipt.objects.all():
+#         print(math.fsum(x.total_amount))
+#         # if(x.money > 0):
+#         #     sum = Envelope.objects.all().aggregate(Sum('money'))
+#         #     print(sum.get('money__sum'))
+#         #     break
+#
+#
+# test()
 
 @api_view(['POST'])
 def job(request):

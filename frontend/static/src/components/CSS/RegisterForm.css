@@ -4,17 +4,17 @@
   display: flex;
   justify-content: space-between;
 }
-.form-button{
-  background-color: #53354A;
+.form-button-register{
+  background-color: #2B2E4A;
   color: white;
   border-radius: 6px;
   padding: 5px 10px;
+  border:none;
 }
 .register{
-  background-color: #E84545;
-  /* margin-left: 26.5%;
-  margin-top: 10%; */
+  color: white;
+  background-color: #1a1c20;
   border-radius: 18px;
-  /* height: 470px;
-  width: 680px; */
+  margin-top: 8%;
+  height: 420px;
 }

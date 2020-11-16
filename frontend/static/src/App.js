@@ -17,13 +17,14 @@ class App extends Component{
       isLoggedIn: !!Cookies.get('Authorization'),
       image: localStorage.getItem('avatar'),
       phone_number:localStorage.getItem('phone_number'),
-      message:localStorage.getItem('message'),
+      message: localStorage.getItem('message'),
     }
     this.registerUser = this.registerUser.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.updateImage = this.updateImage.bind(this);
     this.updatePhone = this.updatePhone.bind(this);
+    this.updateMessage = this.updateMessage.bind(this);
   }
   async registerUser(e, obj){
     e.preventDefault();
@@ -47,14 +48,15 @@ class App extends Component{
     }
    }
 
- updateImage(image) {
+  updateImage(image) {
     this.setState({image});
   }
   updatePhone(updatedPhone){
-    this.setState({updatedPhone})
+    this.setState({phone_number: updatedPhone})
   }
-
-
+  updateMessage(updatedMessage){
+    this.setState({message: updatedMessage})
+  }
   async logIn(e, obj){
     e.preventDefault();
     const options = {
@@ -75,6 +77,7 @@ class App extends Component{
       localStorage.setItem('profile_id', data.user.profile?.id);
       localStorage.setItem('avatar', data.user.profile?.avatar);
       localStorage.setItem('phone_number', data.user.profile?.phone_number);
+      localStorage.setItem('message', data.user.profile?.message);
     }
    }
 
@@ -97,6 +100,7 @@ class App extends Component{
       localStorage.removeItem('avatar');
       localStorage.removeItem('profile_id');
       localStorage.removeItem('phone_number');
+      localStorage.removeItem('message');
       this.props.history.push('/')
     }
    }
@@ -107,7 +111,7 @@ class App extends Component{
       {isLoggedIn === false ? '': <Navbar logOut={this.logOut} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} image={this.state.image}/>}
         <Switch>
           <Route path="/dashboard" render={(props) => (<DashBoard {...props}/>)}/>
-          <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} message={this.state.message} updateImage={this.updateImage} updatePhone={this.updatePhone} phone_number={this.state.phone_number}/>)}/>
+          <Route path="/settings" render={(props) => (<Settings {...props} image={this.state.image} message={this.state.message} updateMessage={this.updateMessage} updateImage={this.updateImage} updatePhone={this.updatePhone} phone_number={this.state.phone_number}/>)}/>
           <Route path="/social" render={(props) => (<Social {...props}/>)}/>
           <Route path="/guides" render={(props) => (<Guides {...props}/>)}/>
           <Route exact= {true} path="/">
