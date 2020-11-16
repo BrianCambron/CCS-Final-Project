@@ -21,7 +21,7 @@ class ChatForm extends Component {
             <label htmlFor="message">Message</label>
             <input type='text' className="form-control" id="message" name="message" value={this.state.message} onChange={this.handleChange}/>
           </div>
-            <button className="btn btn-primary">Post Message</button>
+            <button className="btn btn-info">Post Message</button>
         </form>
       </div>
       </React.Fragment>

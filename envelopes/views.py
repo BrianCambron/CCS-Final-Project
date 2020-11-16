@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-import math
+from django.db.models import Sum
 
 
 import json
@@ -42,12 +42,12 @@ class ReceiptView(generics.ListCreateAPIView):
     serializer_class = ReceiptSerializer
 #
 # def test():
-#     for x in Receipt.objects.all():
-#         print(math.fsum(x.total_amount))
-#         # if(x.money > 0):
-#         #     sum = Envelope.objects.all().aggregate(Sum('money'))
-#         #     print(sum.get('money__sum'))
-#         #     break
+#     for x in Envelope.objects.all():
+#         if(x.money > 0):
+#             sum = Envelope.objects.all().aggregate(Sum('money'))
+#             total_saved = round(sum.get('money__sum'), 2)
+#             print(total_saved)
+#             break
 #
 #
 # test()
