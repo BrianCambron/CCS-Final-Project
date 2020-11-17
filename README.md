@@ -1,7 +1,7 @@
 # Saveit
 Saveit is a budgetting app that utilizes [Dave Ramsey's](https://www.daveramsey.com/blog/envelope-system-explained) envelope system. The envelope system is a way to track exactly how much money you have in each budget category for the month by keeping your cash tucked away in envelopes.
 # Motivation
-I have some friends living paycheck to paycheck. Most of us aren't really taught how to budget in school, so I created this app to not only showcase my abilities as a Junior Developer but also help discipline them.
+I have some friends living paycheck to paycheck. Most of us aren't really taught how to budget in school, so I created this app to not only showcase my abilities as a Junior Developer but also to help them get started with budgeting.
 # Features
 - Ability to create “envelopes”. 
 - Add receipts to envelopes. 
