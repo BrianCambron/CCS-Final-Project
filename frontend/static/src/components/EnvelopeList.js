@@ -43,7 +43,7 @@ class EnvelopeItem extends Component {
           <hr/>
           {this.state.isEditing?
             <input type="number"  min="0" id="money" name="money" value={this.state.money} onChange={this.handleInput} required/>
-            :<p>{this.props.envelope.money < 0? 'Over your budget by: ': '$'}{this.props.envelope.money}</p>}
+            :<p step='any' >{this.props.envelope.money < 0? 'Over your budget by: ': '$'}{this.props.envelope.money.toFixed(2)}</p>}
         </div>
         {
           this.state.isEditing

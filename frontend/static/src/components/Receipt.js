@@ -80,7 +80,7 @@ class Receipt extends Component {
             {options}
           </select>
         <div className="form-group">
-          <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
+          <input style={{overflow:"hidden"}}className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
           <img className="mt-2"style={{width: '30%'}}src={this.state.preview} alt=''/>
         </div>
         <button className="btn btn-info">Read Receipt</button>
