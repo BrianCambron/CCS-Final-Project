@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button} from "react-bootstrap";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Cookies from 'js-cookie';
 import EnvelopeList from './EnvelopeList'
 import { Pie } from 'react-chartjs-2';
@@ -105,10 +106,13 @@ class DashBoard extends Component{
     let updatedData = {money: selectedEnvelope.money, name:selectedEnvelope.name}
 
     if(halfOfEnvelope === updatedData.money){
-      alert('You have spent 50% of what you alloted')
+      NotificationManager.info('', 'You have spent half of the money in this envelope!', 6000);
     }
     else if(updatedData.money === 0){
-      alert('You have spent everything in this envelope!')
+       NotificationManager.warning('', 'You have spent everything in this envelope!', 6000);
+    }
+    else if (updatedData.money <= 0) {
+      NotificationManager.error('You are over Budget!', 'You do not have any money left in this envelope', 6000);
     }
     const options = {
       method:'PUT',
@@ -119,11 +123,10 @@ class DashBoard extends Component{
       body: JSON.stringify(updatedData),
     };
     const handleError = (err) => console.warn(err);
-    const response = await fetch(`api/v1/envelopes/user/${id}/`, options);
+    const response = await fetch(`api/v1/envelopes/user/${id}/`, options).catch(handleError);
 
   }
   render(){
-    console.log(this.state.envelopes);
     const data = this.state.envelopes.map(envelope => envelope.money);
     const labels = this.state.envelopes.map(envelope => envelope.name);
     return(
@@ -219,6 +222,7 @@ class DashBoard extends Component{
         </aside>
         <EnvelopeList envelopes={this.state.envelopes} deleteEnvelope={this.deleteEnvelope} editEnvelope={this.editEnvelope}/>
         <footer className='footer'><Button className="aside-buttons" onClick={() => {this.handleModal()}}><i className="fas fa-plus"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal2()}}><i className="fas fa-chart-pie"></i></Button><Button className="aside-buttons ml-2" onClick={() => {this.handleModal3()}}><i className="fas fa-receipt"></i></Button></footer>
+        <NotificationContainer/>
       </>
     )
   }

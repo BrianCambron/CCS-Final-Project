@@ -83,8 +83,9 @@ class Receipt extends Component {
           <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
           <img className="mt-2"style={{width: '30%'}}src={this.state.preview} alt=''/>
         </div>
-        <button className="mb-2 btn btn-info">Read Receipt</button>
+        <button className="btn btn-info">Read Receipt</button>
       </form>
+      <hr/>
       <form onSubmit={(e) => {this.uploadReceipt(e, this.state); this.setState({merchant_name:'', total_amount:0})}}>
         <div>
           <label htmlFor='merchant_name'>Merchant Name</label>
