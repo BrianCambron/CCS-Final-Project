@@ -31,7 +31,7 @@ class LoginForm extends Component{
           </div>
           <div className="form-bottom">
             <button className="form-button-login">Log in</button>
-            <Link style={{color: 'blue'}} to="/Register">Don't have an account?</Link>
+            <Link style={{color: 'white'}} to="/Register">Don't have an account?</Link>
           </div>
         </form>
       </div>

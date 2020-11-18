@@ -36,7 +36,7 @@ class RegisterForm extends Component {
         </div>
         <div className="form-bottom">
           <button className="form-button-register">Register</button>
-          <Link style={{color: 'blue'}} to="/">Already have an account?</Link>
+          <Link style={{color: 'white'}} to="/">Already have an account?</Link>
         </div>
       </form>
       </div>
