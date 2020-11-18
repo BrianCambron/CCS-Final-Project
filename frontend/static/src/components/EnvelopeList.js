@@ -39,16 +39,16 @@ class EnvelopeItem extends Component {
         <div style={{textAlign: 'center'}}>
           {this.state.isEditing?
             <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleInput} required/>
-            :<h3>{this.props.envelope.name}</h3>}
+            :<h3 style={{fontWeight: 'bold'}}>{this.props.envelope.name}</h3>}
           <hr/>
           {this.state.isEditing?
             <input type="number"  min="0" id="money" name="money" value={this.state.money} onChange={this.handleInput} required/>
-            :<p step='any' >{this.props.envelope.money < 0? 'Over your budget by: ': '$'}{this.props.envelope.money.toFixed(2)}</p>}
+            :<p style={{fontSize: '30px', fontWeight: 'bold', color: this.props.envelope.money < 0? 'red': 'black'}}>${this.props.envelope.money.toFixed(2)}</p>}
         </div>
         {
           this.state.isEditing
           ? <button className="btn btn-link" onClick={this.handleSave} type='button'>Save</button>
-          : <button className="btn btn-link" onClick={() => this.toggleEdit()}>Edit</button>
+          : <button className="btn btn-link" onClick={() => this.toggleEdit()}><i style={{color:'black'}}className="fas fa-edit"></i></button>
         }
       </div>
       </>
@@ -61,7 +61,7 @@ class EnvelopeItem extends Component {
 
 
 function EnvelopeList(props){
-  const colors = ['#e6d5b8', '#f5a25d', '#fa7f72', '#bb2205', '#d2d3c9', '#b8de6f', '#f6830f', '#fcdada', '#fddb3a', '#cbaf87', '#a4b787', '#9656a1', '#b0deff', '#e4508f', '#20716a', '#ea5455'];
+  const colors = ['#e6d5b8', '#f5a25d', '#fa7f72', '#734046', '#d2d3c9', '#b8de6f', '#f6830f', '#fcdada', '#fddb3a', '#cbaf87', '#a4b787', '#9656a1', '#b0deff', '#e4508f', '#20716a', '#ea5455'];
   let index = 0;
   const envelopes = props.envelopes.map(envelope => {
     const color = colors[index];

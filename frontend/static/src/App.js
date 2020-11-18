@@ -57,6 +57,7 @@ class App extends Component{
   updateMessage(updatedMessage){
     this.setState({message: updatedMessage})
   }
+  
   async logIn(e, obj){
     e.preventDefault();
     const options = {

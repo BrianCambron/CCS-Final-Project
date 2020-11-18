@@ -154,7 +154,7 @@ class DashBoard extends Component{
           </Modal.Footer>
           </Modal>
           <Modal animation={false} show={this.state.display} onHide={() => {this.handleModal2()}}>
-          <Modal.Header closeButton>Spending habits</Modal.Header>
+          <Modal.Header closeButton>Budget Breakdown</Modal.Header>
           <Modal.Body>
           <div className="chart">
             <Pie
@@ -165,7 +165,7 @@ class DashBoard extends Component{
                     '#e6d5b8',
                     '#f5a25d',
                     '#fa7f72',
-                    '#bb2205',
+                    '#734046',
                     '#d2d3c9',
                     '#b8de6f',
                     '#f6830f',
@@ -184,7 +184,7 @@ class DashBoard extends Component{
                     '#e6d5b8',
                     '#f5a25d',
                     '#fa7f72',
-                    '#bb2205',
+                    '#734046',
                     '#d2d3c9',
                     '#b8de6f',
                     '#f6830f',

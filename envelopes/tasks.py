@@ -38,9 +38,9 @@ def send_sms(phone_number):
         good_message_1 = "Becoming rich is hard. Staying broke is hard. Choose your hard. \n – Eric Worre \n Hey, %s. You spent %s this week. You saved %s this week. \n" % (username, total_spent, total_saved)
         good_message_2 = "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver. \n – Ayn Rand \n Hey, %s. You spent %s this week. You saved %s this week. \n" % (username, total_spent, total_saved)
         good_message_3 = "You don’t have to see the whole staircase, just take the first step. \n – Martin Luther King, Jr \n Hey, %s. You spent %s this week. You saved %s this week. \n" % (username, total_spent, total_saved)
-        bad_message_1 = "If we command our wealth, we shall be rich and free. If our wealth commands us, we are poor indeed. \n – Edmund Burke \n Hey, %s. You spent %s this week. Did not save any money this week.\n" % (username, total_spent)
-        bad_message_2 = "Too many people spend money they haven’t earned, to buy things they don’t want, to impress people that they don’t like. \n – Will Rogers \n Hey, %s. You spent %s this week. Did not save any money this week.\n" % (username, total_spent)
-        bad_message_3 = "Just keep swimming. \n – Dory (from Finding Nemo) \n Hey, %s. You spent %s this week. Did not save any money this week. \n" % (username, total_spent)
+        bad_message_1 = "If we command our wealth, we shall be rich and free. If our wealth commands us, we are poor indeed. \n – Edmund Burke \n Hey, %s. You spent %s this week. You did not save any money this week.\n" % (username, total_spent)
+        bad_message_2 = "Too many people spend money they haven’t earned, to buy things they don’t want, to impress people that they don’t like. \n – Will Rogers \n Hey, %s. You spent %s this week. You did not save any money this week.\n" % (username, total_spent)
+        bad_message_3 = "Just keep swimming. \n – Dory (from Finding Nemo) \n Hey, %s. You spent %s this week. You did not save any money this week. \n" % (username, total_spent)
 
         if(total_saved > 0):
             message = random.choice([good_message_1, good_message_2, good_message_3])
@@ -53,7 +53,7 @@ def send_sms(phone_number):
 
         if User.phone_number:
             client.messages.create(
-             body=message + Usermessage,
+             body=bad_message_3 + Usermessage,
              from_='+19382220702',
              to=phone_number
              )
