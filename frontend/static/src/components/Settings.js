@@ -84,10 +84,12 @@ class Settings extends Component {
   }
 
   render(){
-    const profile_id = localStorage.getItem('profile_id')
+    const profile_id = localStorage.getItem('profile_id');
     return(
       <div className="settings shadow p-3 mb-5">
-        {this.props.image === 'undefined' || this.props.image === undefined? <form onSubmit={(e) => this.addProfile(e, this.state)}>
+        {this.props.image === 'undefined' || !this.props.image
+        ?
+        <form onSubmit={(e) => this.addProfile(e, this.state)}>
           <div className="form-group">
             <label htmlFor="avatar">Add a profile picture:</label>
             <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
@@ -103,9 +105,10 @@ class Settings extends Component {
                 <textarea className="form-control" id="message" rows="3" name="message" value={this.state.message} onChange={this.handleChange}/>
              </div>
           </div>
-          <button>Add Profile</button>
+          <button className="btn btn-info">Add Profile</button>
         </form>
-        : <form onSubmit={(e) => this.editProfile(e, profile_id, this.state)}>
+        :
+        <form onSubmit={(e) => this.editProfile(e, profile_id, this.state)}>
           <div className="form-group">
             <label htmlFor="avatar">Upload a profile picture:</label>
             <input className="form-control-file"type='file' id="avatar" name="avatar" onChange={this.handleImage}/>
